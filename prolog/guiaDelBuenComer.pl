@@ -1,11 +1,6 @@
 animal(vaca).
 animal(cerdo).
 
-materiaPrima(vaca).
-materiaPrima(cerdo).
-materiaPrima(arroz).
-materiaPrima(trigo).
-
 proviene(leche,vaca).
 proviene(queso,leche).
 proviene(pan,trigo).
@@ -18,7 +13,6 @@ esLacteo(Alimento) :-
 tieneGluten(Alimento) :-
     proviene(Alimento,trigo).
 
-
 /* Recursividad! */
 esDerivadoAnimal(Alimento) :-
     proviene(Alimento,Materia),
@@ -26,3 +20,25 @@ esDerivadoAnimal(Alimento) :-
 esDerivadoAnimal(Alimento) :-
     proviene(Alimento,Materia),
     esDerivadoAnimal(Materia).
+
+/* platos */
+
+plato(sandwich,pan).
+plato(sandwich,jamon).
+plato(sandwich,queso).
+
+plato(wok,pan).
+plato(wok,arroz).
+plato(wok,zanahoria).
+plato(wok,cebolla).
+plato(wok,morron).
+
+dietaVegana(Plato) :-
+    forall(
+            plato(Plato,Alimento),
+            not(esDerivadoAnimal(Alimento))).
+
+dietaCeliaca(Plato) :-
+    forall(
+        plato(Plato,Alimento),
+        not(tieneGluten(Alimento))).
