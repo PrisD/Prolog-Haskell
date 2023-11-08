@@ -56,8 +56,5 @@ diagnostico(benito, prevencion,hipertension, 4).
 diagnostico(claudia, critico,colesterol, 3).
 
 % Define reglas para verificar si un diagnóstico es peligroso.
-recomendarPlato(Persona) :-
-    diagnostico(Persona,Diagnostico,)
 
-    diagnostico(Persona, intolerante_al_gluten, _).
 
