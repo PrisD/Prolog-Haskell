@@ -42,3 +42,22 @@ dietaCeliaca(Plato) :-
     forall(
         plato(Plato,Alimento),
         not(tieneGluten(Alimento))).
+dieta(Plato):-
+    plato(Plato,_).
+
+% Define las restricciones dietéticas de las personas.
+restricciones(analia, vegana).
+restricciones(benito, celiaca).
+restricciones(claudia, omnivora).
+
+% Define los diagnósticos de las personas y sus niveles.
+diagnostico(analia, prevencion,obesidad, 5).
+diagnostico(benito, prevencion,hipertension, 4).
+diagnostico(claudia, critico,colesterol, 3).
+
+% Define reglas para verificar si un diagnóstico es peligroso.
+recomendarPlato(Persona) :-
+    diagnostico(Persona,Diagnostico,)
+
+    diagnostico(Persona, intolerante_al_gluten, _).
+
