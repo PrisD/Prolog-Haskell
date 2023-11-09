@@ -136,7 +136,6 @@ hypear [] = []
 hypear [x] = [min 5 (x + 2)]
 hypear (x : xs) = min 5 (x + 2) :  drop 1 xs ++ [min 5 (last xs + 2)]
 
-{- Obtener todas las series que sean de monitos chinos -}
 
 seriesMonitosChinos :: [Serie] -> [Serie]
 seriesMonitosChinos = filter ((== "Monito chino") . genero)
@@ -146,3 +145,16 @@ seriesNetflisValeLaPena = filter (\serie -> esOriginalDeNetflis serie && valeLaP
 
 seriesConNTemporadas :: [Serie] -> Int -> [Serie]
 seriesConNTemporadas series n = filter ((== n) . cantTemporadas) series
+
+serieFloja :: [Serie] -> [Serie]
+serieFloja = filter (\serie -> cantTemporadas serie == 1)
+
+tiempoMaraton :: Maraton -> Int
+tiempoMaraton = sum . map duracion
+
+valeLaPenaMaraton2 :: Maraton -> Bool
+valeLaPenaMaraton2 maraton = any valeLaPena maraton || bbEnMaraton maraton
+
+{- Dada una maratón de series, saber la calificación más alta que se le dio a una serie original de Netflis -}
+mejorPuntuada :: Maraton -> Int
+mejorPuntuada maraton = maximum . map calificacion $ filter esOriginalDeNetflis maraton
